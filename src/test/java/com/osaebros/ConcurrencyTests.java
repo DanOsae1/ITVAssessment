@@ -31,17 +31,16 @@ public class ConcurrencyTests {
     }
 
     @Test
-    public void testForShowsThatsStartedAtDiferentTimesButEndedAtTheSameTime() {
+    public void testForShowsThatStartedAtDifferentTimesButEndedAtTheSameTime() {
         //given
         ConcurrentCalculator concurrentCalculator = new ConcurrentCalculator();
         Instant start = Instant.now();
         Instant end = start.plus(1, HOURS);
 
         VideoPlayInfo[] playinfo = new VideoPlayInfo[]{
-                new VideoPlayInfo(start.plus(10, MINUTES), end),
                 new VideoPlayInfo(start.plus(20, MINUTES), end),
+                new VideoPlayInfo(start.plus(10, MINUTES), end),
                 new VideoPlayInfo(start, end),
-
         };
 //        when
         int actualCon = concurrentCalculator.getMaximumConCurrentPlays(playinfo);
@@ -76,7 +75,7 @@ public class ConcurrencyTests {
 
 
     @Test
-    public void testForShowsThatHaveNoConcurrentRunnningTimes(){
+    public void testForShowsThatHaveNoConcurrentRunningTimes(){
         //given
         ConcurrentCalculator concurrentCalculator = new ConcurrentCalculator();
         Instant start = Instant.now();
