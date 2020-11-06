@@ -1,6 +1,6 @@
 package com.osaebros.calculator;
 
-import com.osaebros.videoInformation.VideoPlayInfo;
+import com.osaebros.videoinformation.VideoPlayInfo;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,16 +15,13 @@ public class ConcurrentCalculator {
                 .collect(Collectors.toList());
 
         List<VideoPlayInfo> concurrencyList = new ArrayList<>();
-
         for (int i = 0; i < vinfo.size() - 1; i++) {
 
             for (int j = i + 1; j < vinfo.size(); j++) {
                 VideoPlayInfo vi = vinfo.get(i);
                 VideoPlayInfo vj = vinfo.get(j);
 
-                if (i != j && vi.getStartTime().compareTo(vj.getStartTime()) == 0) {
-                    concurrencyList.add(vi);
-                } else if (i != j && (vj.getStartTime().isAfter(vi.getStartTime()) && vj.getStartTime().isBefore(vi.getEndTime()) ) ) {
+                if (i != j && vi.getStartTime().equals(vj.getStartTime()) || (vj.getStartTime().isAfter(vi.getStartTime()) && vj.getStartTime().isBefore(vi.getEndTime()))) {
                     concurrencyList.add(vi);
                 }
             }
